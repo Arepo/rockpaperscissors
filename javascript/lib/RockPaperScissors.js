@@ -30,6 +30,13 @@ Game.prototype.winner = function() {
     }
 }
 
+Game.prototype.spockOutcome = function(loser) {
+	if(loser === "rock") {
+		return "Alex's Spock vaporises Bob's rock"
+	} else
+	return "Alex's Spock reverses the polarity of Bob's scissors"
+}
+
 function Player(name) {
   this.name = name;
 };
