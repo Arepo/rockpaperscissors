@@ -1,14 +1,14 @@
-class Game
+# class Game
 
-  PAIRS = {
-    rock:     { beats: :scissors },
-    paper:    { beats: :rock },
-    scissors: { beats: :paper }
-  }.freeze
+#   PAIRS = {
+#     rock:     { beats: :scissors },
+#     paper:    { beats: :rock },
+#     scissors: { beats: :paper }
+#   }.freeze
 
-  def initialize(player1, player2)
-    @player1, @player2 = player1, player2
-  end
+#   def initialize(player1, player2)
+#     @player1, @player2 = player1, player2
+#   end
 
   def winner
     return nil if same_pick?
