@@ -17,26 +17,26 @@ describe("Rock-Paper-Scissors", function() {
 
       });
 
-      it('should beat scissors', function() {
+      it('rock should beat scissors', function() {
 
         player2.picks('scissors');
         expect(game.winner()).toBe(player1);
       });
 
-      it('should beat lizard', function() {
+      it('rock should beat lizard', function() {
         
         player2.picks('lizard');
         expect(game.winner()).toBe(player1);
       });
 
-      it('should lose to paper', function() {
+      it('rock should lose to paper', function() {
 
         player2.picks('paper');
         expect(game.winner()).toBe(player2);
 
       });
 
-        it('should lose to Spock', function() {
+        it('rock should lose to Spock', function() {
 
         player2.picks('Spock');
         expect(game.winner()).toBe(player2);
@@ -221,23 +221,51 @@ describe("Rock-Paper-Scissors", function() {
 
   describe('victory messages', function() {
 
-    describe('for Spock', function() {
+    describe('for Spock and Alex', function() {
 
-      it("should return [player1]'s Spock vaporises [player2]'s rock", function() {
+      it("should return Alex's Spock vaporises Bob's rock", function() {
 
         player1.picks('Spock');
         player2.picks('rock');
-        expect(game.spockOutcome(player2.pick)).toBe("Alex's Spock vaporises Bob's rock");
+        expect(game.outcome()).toBe("Alex's Spock death grips Bob's rock");
 
       })
 
-      it("should return [player1]'s Spock reverses the polarity of [player2]'s scissors", function() {
+      it("should return Alex's Spock reverses the polarity of Bob's scissors", function() {
 
         player1.picks('Spock');
         player2.picks('scissors');
-        expect(game.spockOutcome(player2.pick)).toBe("Alex's Spock reverses the polarity of Bob's scissors");
+        expect(game.outcome()).toBe("Alex's Spock reverses the polarity of Bob's scissors");
 
       });
+
+    });
+
+    describe('for Spock and Bob', function() {
+
+      it("should return Bob's lizard devours [player1]'s paper", function() {
+
+        player1.picks('rock');
+        player2.picks('Spock');
+        expect(game.outcome()).toBe("Bob's Spock death grips Alex's rock");
+
+      })
+
+      it("should return [player2]'s lizard devours [player1]'s paper", function() {
+
+        player1.picks('scissors');
+        player2.picks('Spock');
+        expect(game.outcome()).toBe("Bob's Spock reverses the polarity of Alex's scissors");
+
+      })
+
+      // it("should return [player1]'s Spock reverses the polarity of [player2]'s scissors", function() {
+
+      //   player1.picks('Spock');
+      //   player2.picks('scissors');
+      //   expect(game.spockOutcome(player2.pick)).toBe("Alex's Spock reverses the polarity of Bob's scissors");
+
+      // });
 
     });
 
