@@ -1,0 +1,76 @@
+<!doctype>
+<html>
+	<head>
+		<title>Rock Paper Scissors Lizard Spock</title>
+		<style>
+		body {
+			font-family: "Helvetica Neue";
+			margin: 15px 0 0 30px;
+		}
+
+		.choices img {
+			width: 15%;
+			margin-right:; 2.5%;
+			opacity: 0.5;
+			transition: 1s opacity;
+		}
+
+		.choices img:hover {
+			cursor: pointer;
+			opacity: 1;
+		}
+
+		#results {
+			list-style: none;
+		}
+
+		#results li {
+			background: #999;
+			color: #fff;
+			font-size: 24px;
+			border-radius: 8px;
+			padding: 5px;
+			width: 80%;
+			margin-bottom: 10px;
+			display: none;
+		}
+		</style>
+
+	</head>
+	<body>
+		<h1>Terminator 5: Settling things via Roshambo</h1>
+		<div class='choices'>
+			<img id="rock" src="images/rock.jpg" data-pick="rock">
+			<img id="paper" src="images/paper.jpg" data-pick="paper">
+			<img id="scissors" src="images/scissors.jpg" data-pick="scissors">
+			<img id="lizard" src="images/lizard.jpg" data-pick="lizard">
+			<img id="Spock" src="images/spock.jpg" data-pick="Spock">
+		</div>
+		<ul id='results'></ul>
+
+		<script src="lib/RockPaperScissors.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				var p1 = new Player(prompt("Enter player 1's name"));
+				var p2 = new Player("Skynet");
+				var game = new Game(p1, p2)
+
+				$('.choices img').on('click', function(){
+					p1.picks($(this).data('pick'));
+					var options = ["Spock", "lizard", "rock", "scissors", "paper"]
+					p2.picks(options[Math.floor(Math.random() * options.length)]);
+
+					$('<li>' + game.outcome() + '</li>').prependTo('#results').slideDown();
+
+					alert(game.winner().name);
+					$('#' + game.winner().name).animate({width: 600});
+
+					$('li:gt(3)').fadeOut(function(){
+						$(this).remove();
+					})
+				})
+			})
+		</script>
+	
+</html>

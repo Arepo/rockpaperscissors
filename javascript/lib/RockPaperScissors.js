@@ -8,9 +8,9 @@ Game.prototype.PAIRS = { // creates property attached to the class, as eg @@vari
 	
 	Spock: 		{scissors: 'reverses the polarity of', rock: 'death grips'},
 	lizard: 	{Spock: 'eats', paper: 'origamates'},
-	rock: 		{scissors: 'embluntens', lizard: 'outdenses' },
-	scissors: 	{paper: "eviscerate", lizard: 'prunes' },
-	paper: 		{rock: "smothers", Spock: "chokes" }
+	rock: 		{scissors: "people's elbows", lizard: "stares down" },
+	scissors: 	{paper: "tastefully edit", lizard: 'prune' },
+	paper: 		{rock: "has too many words for", Spock: "features revealing holiday photos of" }
 
 };
 
@@ -49,7 +49,10 @@ Game.prototype.loser = function() {
 }
 
 Game.prototype.outcome = function() {
-	return this.winner().name + "'s " + this.winner().pick + ' ' + this._victoryVerbFor(this.winner().pick, this.loser().pick) + ' ' + this.loser().name + "'s " + this.loser().pick
+	if (this.winner() === null) return "Draw"
+	return [(this.winner().name + "'s"), this.winner().pick,
+	(this._victoryVerbFor(this.winner().pick, this.loser().pick)), 
+	(this.loser().name + "'s"), this.loser().pick].join(' ')
 }
 
 function Player(name) {
