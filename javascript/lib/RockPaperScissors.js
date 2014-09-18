@@ -20,7 +20,6 @@ Game.prototype.winner = function() {
 
 	if (this._victoryVerbFor(this.player1.pick, this.player2.pick)) {
     	return this.player1
-
     }
 
     else {

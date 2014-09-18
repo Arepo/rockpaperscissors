@@ -8,21 +8,14 @@
 			margin: 15px 0 0 30px;
 		}
 
-		.choices div {
-			text-align: center;
-			font-size: 400%;
+		.choices img {
+			width: 15%;
 			margin-right:; 2.5%;
-			opacity: 0.2;
+			opacity: 0.5;
 			transition: 0.8s opacity;
 		}
 
-		#winner img {
-			display: none;
-			width: 15%;
-			margin-right:; 2.5%;
-		}
-
-		.choices div:hover {
+		.choices img:hover {
 			cursor: pointer;
 			opacity: 1;
 		}
@@ -46,17 +39,12 @@
 	</head>
 	<body>
 		<h1>Terminator 5: Skynet Agrees to Roshambo for It</h1>
-		<div id="winner"><img id="rock" src="images/rock.jpg" >
-			<img id="paper" src="images/paper.jpg" >
-			<img id="scissors" src="images/scissors.jpg" >
-			<img id="lizard" src="images/lizard.jpg" >
-			<img id="Spock" src="images/spock.jpg" ></div>
 		<div class='choices'>
-			<div class="rock" data-pick="rock">Rock</div>
-			<div class="paper" data-pick="paper">Paper</div>
-			<div class="scissors" data-pick="scissors">Scissors</div>
-			<div class="lizard" data-pick="lizard">Lizard</div>
-			<div class="Spock" data-pick="Spock">Spock</div>
+			<img id="rock" src="images/rock.jpg" data-pick='rock'>
+			<img id="paper" src="images/paper.jpg" data-pick='paper'>
+			<img id="scissors" src="images/scissors.jpg" data-pick='scissors'>
+			<img id="lizard" src="images/lizard.jpg" data-pick='lizard'>
+			<img id="Spock" src="images/spock.jpg" data-pick='Spock'>
 		</div>
 		<ul id='results'></ul>
 
@@ -69,7 +57,7 @@
 				var p2 = new Player("Skynet");
 				var game = new Game(p1, p2)
 
-				$('.choices div').on('click', function(){
+				$('.choices img').on('click', function(){
 					p1.picks($(this).data('pick'));
 					var options = ["Spock", "lizard", "rock", "scissors", "paper"]
 					p2.picks(options[Math.floor(Math.random() * options.length)]);
@@ -77,7 +65,6 @@
 					$('<li>' + game.outcome() + '</li>').prependTo('#results').slideDown();
 
 					// alert(game.winner().name + " wins");
-					$('#winner' + ' #' + game.winner().pick).appendTo
 					$('#' + game.winner().name).animate({width: 600});
 
 					$('li:gt(3)').fadeOut(function(){
