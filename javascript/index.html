@@ -8,14 +8,21 @@
 			margin: 15px 0 0 30px;
 		}
 
-		.choices img {
-			width: 15%;
+		.choices div {
+			text-align: center;
+			font-size: 400%;
 			margin-right:; 2.5%;
-			opacity: 0.5;
-			transition: 1s opacity;
+			opacity: 0.2;
+			transition: 0.8s opacity;
 		}
 
-		.choices img:hover {
+		#winner img {
+			display: none;
+			width: 15%;
+			margin-right:; 2.5%;
+		}
+
+		.choices div:hover {
 			cursor: pointer;
 			opacity: 1;
 		}
@@ -38,13 +45,18 @@
 
 	</head>
 	<body>
-		<h1>Terminator 5: Settling things via Roshambo</h1>
+		<h1>Terminator 5: Skynet Agrees to Roshambo for It</h1>
+		<div id="winner"><img id="rock" src="images/rock.jpg" >
+			<img id="paper" src="images/paper.jpg" >
+			<img id="scissors" src="images/scissors.jpg" >
+			<img id="lizard" src="images/lizard.jpg" >
+			<img id="Spock" src="images/spock.jpg" ></div>
 		<div class='choices'>
-			<img id="rock" src="images/rock.jpg" data-pick="rock">
-			<img id="paper" src="images/paper.jpg" data-pick="paper">
-			<img id="scissors" src="images/scissors.jpg" data-pick="scissors">
-			<img id="lizard" src="images/lizard.jpg" data-pick="lizard">
-			<img id="Spock" src="images/spock.jpg" data-pick="Spock">
+			<div class="rock" data-pick="rock">Rock</div>
+			<div class="paper" data-pick="paper">Paper</div>
+			<div class="scissors" data-pick="scissors">Scissors</div>
+			<div class="lizard" data-pick="lizard">Lizard</div>
+			<div class="Spock" data-pick="Spock">Spock</div>
 		</div>
 		<ul id='results'></ul>
 
@@ -52,18 +64,20 @@
 		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script>
 			$(document).ready(function(){
+				// $('.choices img').hide()
 				var p1 = new Player(prompt("Enter player 1's name"));
 				var p2 = new Player("Skynet");
 				var game = new Game(p1, p2)
 
-				$('.choices img').on('click', function(){
+				$('.choices div').on('click', function(){
 					p1.picks($(this).data('pick'));
 					var options = ["Spock", "lizard", "rock", "scissors", "paper"]
 					p2.picks(options[Math.floor(Math.random() * options.length)]);
 
 					$('<li>' + game.outcome() + '</li>').prependTo('#results').slideDown();
 
-					alert(game.winner().name);
+					// alert(game.winner().name + " wins");
+					$('#winner' + ' #' + game.winner().pick).appendTo
 					$('#' + game.winner().name).animate({width: 600});
 
 					$('li:gt(3)').fadeOut(function(){
